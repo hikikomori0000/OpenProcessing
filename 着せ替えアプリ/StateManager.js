@@ -3,7 +3,7 @@ class StateManager {
   constructor() {
     this.historyStack = [];
     this.redoStack = [];
-    this.KEYS = { PROJECT: 'char_maker_projects_v1' };
+    this.KEYS = { PROJECT: "char_maker_projects_v1" };
   }
 
   // --- 履歴 (Undo/Redo) ---
@@ -11,7 +11,11 @@ class StateManager {
     const stateStr = JSON.stringify(stateData);
     if (this.historyStack.length > 0) {
       // 直前と同じなら保存しない
-      if (JSON.stringify(this.historyStack[this.historyStack.length - 1]) === stateStr) return;
+      if (
+        JSON.stringify(this.historyStack[this.historyStack.length - 1]) ===
+        stateStr
+      )
+        return;
     }
     this.historyStack.push(JSON.parse(stateStr));
     this.redoStack = []; // 新しい操作をしたらRedoは消える
@@ -33,12 +37,12 @@ class StateManager {
   // --- プロジェクト保存 ---
   saveProject(name, sceneData) {
     let projects = this.loadProjects();
-    const idx = projects.findIndex(p => p.name === name);
+    const idx = projects.findIndex((p) => p.name === name);
     const data = { name: name, data: sceneData, timestamp: Date.now() };
-    
+
     if (idx >= 0) projects[idx] = data; // 上書き
     else projects.push(data); // 新規
-    
+
     localStorage.setItem(this.KEYS.PROJECT, JSON.stringify(projects));
   }
 
@@ -56,10 +60,10 @@ class StateManager {
   // 現在の画面の状態をオブジェクトにまとめる
   createSceneData(canvasW, canvasH, cameraOffset, zoom, characters) {
     return {
-        canvasSize: [canvasW, canvasH],
-        cameraOffset: { ...cameraOffset },
-        zoom: zoom,
-        characters: JSON.parse(JSON.stringify(characters))
+      canvasSize: [canvasW, canvasH],
+      cameraOffset: { ...cameraOffset },
+      zoom: zoom,
+      characters: JSON.parse(JSON.stringify(characters)),
     };
   }
 }

@@ -5,14 +5,14 @@
 class Character {
   constructor(x, y, manifestData) {
     // 基本座標とスケール
-    this.pos = { x: x, y: y }; 
-    this.scale = 0.3;          
-    
+    this.pos = { x: x, y: y };
+    this.scale = 1.0;
+
     // 着用中のアイテム (例: { body: "body_default", clothes: "shirtA" })
-    this.selected = {};        
-    
+    this.selected = {};
+
     // ロック状態 (trueならドラッグ移動できない)
-    this.isLocked = false;     
+    this.isLocked = false;
 
     // ■■■ 初期装備の設定 ■■■
     // manifestDataを見て、"default": true になっているアイテムを自動で着せる
@@ -21,10 +21,10 @@ class Character {
 
       for (let cat in categories) {
         let items = categories[cat];
-        
+
         // そのカテゴリ内のデフォルトアイテムを探す
-        let defItem = items.find(it => it.default);
-        
+        let defItem = items.find((it) => it.default);
+
         // デフォルトがあればそれを着用、なければリストの1番目を着用
         if (defItem) {
           this.selected[cat] = defItem.id;
