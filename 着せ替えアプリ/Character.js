@@ -5,8 +5,8 @@
 class Character {
   constructor(x, y, manifestData) {
     // 基本座標とスケール
-    this.pos = { x: x, y: y };
-    this.scale = 1.0;
+    this.pos = { x: x, y: y-36 };
+    this.scale = 0.95;
 
     // 着用中のアイテム (例: { body: "body_default", clothes: "shirtA" })
     this.selected = {};

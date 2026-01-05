@@ -23,7 +23,7 @@ let cameraOffset = { x: 0, y: 250 };
 // // 変更例（例：全体を500px上にずらす）
 // let cameraOffset = { x: 0, y: -500 };
 
-let globalScale = 0.3;
+let globalScale = 1.0;
 let canvasW = 1776.98;
 let canvasH = 2512.67;
 let currentBgColor = "#ffffff";
@@ -124,19 +124,20 @@ function setup() {
 
   // 1. キャラクターを「キャンバスのど真ん中」に配置
   // (足元が中心に来るので、少し下げたい場合は +200 くらいしてもOK)
-  addCharacter(canvasW / 2, canvasH / 2 + 200);
+  addCharacter(canvasW / 2, canvasH / 2);
 
   // 2. カメラの自動調整（顔ではなく、キャンバス全体を映す設定にする）
 
-  // 画面（ウィンドウ）のサイズと、キャンバスのサイズの比率を計算
-  // これにより、スマホでもPCでも「画面いっぱいに全体が収まる倍率」を自動計算します
-  let scaleX = windowWidth / canvasW;
-  let scaleY = windowHeight / canvasH;
+  //   // 画面（ウィンドウ）のサイズと、キャンバスのサイズの比率を計算
+  //   // これにより、スマホでもPCでも「画面いっぱいに全体が収まる倍率」を自動計算します
+  //   let scaleX = windowWidth / canvasW;
+  //   let scaleY = windowHeight / canvasH;
 
-  // 縦横どちらか、収まりきらない方に合わせて縮小（0.85は余白用）
-  // これで globalScale（0.3など）を手動で決め打ちする必要がなくなります
-  globalScale = Math.min(scaleX, scaleY) * 0.85;
+  //   // 縦横どちらか、収まりきらない方に合わせて縮小（0.85は余白用）
+  //   // これで globalScale（0.3など）を手動で決め打ちする必要がなくなります
+  //   globalScale = Math.min(scaleX, scaleY) * 0.93;
 
+  globalScale = 1.0;
   // カメラのズレをリセット（中心を合わせる）
   cameraOffset = { x: 0, y: 0 };
 
