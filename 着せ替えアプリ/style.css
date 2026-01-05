@@ -14,18 +14,24 @@ body {
     max-height: 100vh; /* 画面の90%くらいの高さ */ 
 }
 
+/* 親要素も中央揃えにする */
 #canvasWrapper {
-  flex-grow: 1;
-  background-color: #e0e0e0;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: auto;
+  overflow: hidden; /* スクロールバーを出さない */
 }
 
+/* キャンバスの強制サイズ調整 */
 canvas {
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
-  background-color: white;
+  /* どんなに巨大なキャンバスでも、画面（親要素）からはみ出さないようにする */
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  
+  /* 縦横比を維持して綺麗に収める */
+  object-fit: contain; 
 }
 
 /* リサイズバー */
